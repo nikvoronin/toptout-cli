@@ -23,7 +23,7 @@ def get_data_url(app_id : str) -> str:
 
 def update():
     apps_api = sw.AppsApi()
-    #tele_api = sw.TelemetryApi()
+    # tele_api = sw.TelemetryApi()
 
     apps = { k:None for k in apps_api.get_application_id() }
 
@@ -65,7 +65,7 @@ def load_parse_rules() -> dict:
             line = f.readline()
             if not line: break
 
-            m = re.search(r"^\s*\[([+-. ])\]\s+(.*)$", line)
+            m = re.search(r"^\s*\[([+-_. ])\]\s+(.*)$", line)
             rules[m.group(2)] = m.group(1)
     
     return rules
