@@ -1,5 +1,7 @@
 # [Toptout](https://github.com/beatcracker/toptout) --command line interactive
 
+Read more at [Toptout](https://github.com/beatcracker/toptout)
+
 > In a draft state!
 
 ## Requirements
