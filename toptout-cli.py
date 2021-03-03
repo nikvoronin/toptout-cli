@@ -2,7 +2,6 @@ import swagger_client as sw
 import json
 import requests
 import os.path
-from enum import Enum
 import re
 import argparse
 

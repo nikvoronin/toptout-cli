@@ -29,16 +29,16 @@ Download `.json` datas from `https://github.com/beatcracker/toptout/tree/master/
 
 ### ¿ Revert / Undo ?
 
-`toptout-cli -r`
-`toptout-cli --revert`
-`toptout-cli --undo`
+- `toptout-cli -r`
+- `toptout-cli --revert`
+- `toptout-cli --undo`
 
 `?` Revert or undoing all changes
 
 ### Print Help
 
-`toptout-cli -h`
-`toptout-cli --help`
+- `toptout-cli -h`
+- `toptout-cli --help`
 
 ### Diagnostics
 
