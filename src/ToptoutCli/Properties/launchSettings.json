@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ToptoutCli": {
+      "commandName": "Project",
+      "commandLineArgs": ""
+    }
+  }
+}
