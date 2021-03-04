@@ -87,8 +87,8 @@ def load_parse_rules() -> dict:
             line = f.readline()
             if not line: break
 
-            m = re.search(r"^\s*\[([+-_. ])\]\s+(.*)$", line)
-            rules[m.group(2)] = m.group(1)
+            match = re.search(r"^\s*[|\[\(\{]([+-_.\s])[|\}\)\]]\s+(.*)$", line)
+            if match: rules[match.group(2)] = match.group(1)
     
     return rules
 
