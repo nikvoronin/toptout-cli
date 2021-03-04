@@ -3,7 +3,6 @@ import requests
 import os.path
 import re
 import argparse
-# import swagger_client as sw
 
 def download_json(url : str):
     raw_json = ''
@@ -19,11 +18,6 @@ def download_json(url : str):
 
 def get_data_url(app_id : str) -> str:
     return f'https://raw.githubusercontent.com/{GITHUB_USER_REPO_PAIR}/master/data/{app_id}.json'
-
-# def get_apps_list() -> dict:
-#     apps_api = sw.AppsApi()
-#     apps = { k:None for k in apps_api.get_application_id() }
-#     return apps
 
 def github_get_data_url() -> str:
     r = requests.get(GITHUB_REPOTREE_MAIN_URL)
@@ -55,12 +49,10 @@ def get_apps_list() -> dict:
 
 def update():
     apps = get_apps_list()
-    # tele_api = sw.TelemetryApi()
 
     for app_id in apps:
         try:
             print(f'{app_id}... ', end='')
-            # apps[app_id] = tele_api.get_telemetry_by_id(app_id)
             apps[app_id] = download_json(get_data_url(app_id))
             print('OK')
         except:
