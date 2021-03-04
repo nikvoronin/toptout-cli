@@ -11,16 +11,15 @@ namespace ToptoutCli
             Console.WriteLine( "Toptout-cli 0.1.304-alpha" );
 
             var cmd = new RootCommand( description: "Easily opt-out from telemetry collection." );
-            cmd.AddCommand( CreateCommand(
-                new string[] { "update", "u", "force" },
-                "Download and update local database." ,
-                () => {
+
+            cmd.AddCommand( UpdateCommand.Create(
+                (userRepo) => {
                     // TODO Download json data
-                    Console.WriteLine("[UPDATE] handler");
+                    Console.WriteLine($"[UPDATE] handler {userRepo}");
                 }));
 
             cmd.Handler = CommandHandler.Create( ( ) => {
-                // TODO do toptout things
+                // TODO do MAIN toptout things
                 Console.WriteLine( "[ROOT] handler" );
             } );
 
@@ -30,23 +29,6 @@ namespace ToptoutCli
             Console.ReadLine();
 
             return errlevel;
-        }
-
-        internal static Command CreateCommand( string[] aliases, string description, Action handler )
-        {
-            var cmd = new Command( 
-                name: aliases[0],
-                description: description
-                );
-
-            if (aliases != null) {
-                for(int i = 1; i < aliases.Length; i++)
-                    cmd.AddAlias( aliases[i]);
-            }
-
-            cmd.Handler = CommandHandler.Create( handler );
-
-            return cmd;
         }
     }
 }
