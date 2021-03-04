@@ -1,9 +1,9 @@
-import swagger_client as sw
 import json
 import requests
 import os.path
 import re
 import argparse
+# import swagger_client as sw
 
 def download_json(url : str):
     raw_json = ''
@@ -18,13 +18,44 @@ def download_json(url : str):
     return json.loads(raw_json)
 
 def get_data_url(app_id : str) -> str:
-    return f'https://raw.githubusercontent.com/beatcracker/toptout/master/data/{app_id}.json'
+    return f'https://raw.githubusercontent.com/{GITHUB_USER_REPO_PAIR}/master/data/{app_id}.json'
+
+# def get_apps_list() -> dict:
+#     apps_api = sw.AppsApi()
+#     apps = { k:None for k in apps_api.get_application_id() }
+#     return apps
+
+def github_get_data_url() -> str:
+    r = requests.get(GITHUB_REPOTREE_MAIN_URL)
+    if r.status_code != 200: return None
+    
+    gh_master_tree = r.json()
+    for blob in gh_master_tree['tree']:
+        if blob['path'] == 'data': return blob['url']
+
+    return None
+
+def github_get_json_file_list(github_data_url : str) -> list:
+    r = requests.get(github_data_url)
+    if r.status_code != 200: return None
+    
+    gh_files_tree = r.json()
+    json_files_list = [blob['path'][:-5] for blob in gh_files_tree['tree'] if blob['path'].endswith('.json')]
+
+    return json_files_list
+
+
+def get_apps_list() -> dict:
+    apps = {}
+    
+    gh_data_url = github_get_data_url()
+    apps = { k:None for k in github_get_json_file_list(gh_data_url) }
+
+    return apps
 
 def update():
-    apps_api = sw.AppsApi()
+    apps = get_apps_list()
     # tele_api = sw.TelemetryApi()
-
-    apps = { k:None for k in apps_api.get_application_id() }
 
     for app_id in apps:
         try:
@@ -88,6 +119,9 @@ def process_rules(apps) -> dict:
 
 DB_FILENAME = 'toptout.json'
 USER_OPTIONS_FILENAME = 'user-options.txt'
+GITHUB_USER_REPO_PAIR = 'beatcracker/toptout'
+GITHUB_REPOTREE_MAIN_URL = f'https://api.github.com/repos/{GITHUB_USER_REPO_PAIR}/git/trees/master'
+
 
 if __name__ == '__main__':
     print('Toptout-cli 0.1.0-alpha')
