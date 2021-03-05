@@ -1,7 +1,6 @@
 setlocal
 
 mkdir bin
-mkdir lib
 mkdir schema
 
 if not exist ./bin/swagger-codegen-cli.jar (
