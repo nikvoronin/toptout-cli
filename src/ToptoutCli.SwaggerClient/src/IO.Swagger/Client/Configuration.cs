@@ -245,13 +245,7 @@ namespace IO.Swagger.Client
         {
             get
             { 
-                if (_apiClient == null)
-                {
-                    return _timeout;
-                } else
-                {
-                    return (int)ApiClient.RestClient.Timeout.GetValueOrDefault(TimeSpan.FromSeconds(0)).TotalMilliseconds;
-                }
+                return _timeout;
             }
             set
             {
