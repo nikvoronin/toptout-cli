@@ -1,602 +1,600 @@
 {
     "$schema": "http://json-schema.org/draft-06/schema#",
-    "$ref": "#/definitions/Toptout",
-    "definitions": {
-        "Toptout": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "pattern": "^[a-z0-9-]+$"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "executable_name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "category_id": {
-                    "type": "string",
-                    "pattern": "^[a-z0-9-]+$"
-                },
-                "category_name": {
-                    "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/Links"
-                },
-                "telemetry": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Telemetry"
+    "$ref": "#/Toptout",
+    "Toptout": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+            },
+            "name": {
+                "type": "string"
+            },
+            "executable_name": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "category_id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+            },
+            "category_name": {
+                "type": "string"
+            },
+            "links": {
+                "$ref": "#/Links"
+            },
+            "telemetry": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/Telemetry"
+                }
+            }
+        },
+        "required": [
+            "description",
+            "category_id",
+            "category_name",
+            "id",
+            "links",
+            "name"
+        ],
+        "title": "Toptout"
+    },
+    "Links": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "main": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^http[s]?:\\/\\/.+$"
+            },
+            "telemetry": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^http[s]?:\\/\\/.+$"
+            },
+            "privacy": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^http[s]?:\\/\\/.+$"
+            }
+        },
+        "required": [
+            "main"
+        ],
+        "title": "Links"
+    },
+    "Telemetry": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+            },
+            "name": {
+                "type": "string"
+            },
+            "is_official": {
+                "type": "boolean"
+            },
+            "description": {
+                "type": "string"
+            },
+            "links": {
+                "$ref": "#/Links"
+            },
+            "target": {
+                "$ref": "#/Target"
+            }
+        },
+        "required": [
+            "id",
+            "name",
+            "is_official"
+        ],
+        "title": "Telemetry"
+    },
+    "Target": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "exec": {
+                "$ref": "#/Exec"
+            },
+            "env": {
+                "$ref": "#/Env"
+            },
+            "plain_file": {
+                "$ref": "#/PlainFile"
+            },
+            "json_file": {
+                "$ref": "#/JSONFile"
+            },
+            "registry": {
+                "$ref": "#/Registry"
+            },
+            "noop": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/Noop"
+                }
+            }
+        },
+        "anyOf": [
+            {
+                "required": [
+                    "exec"
+                ]
+            },
+            {
+                "required": [
+                    "env"
+                ]
+            },
+            {
+                "required": [
+                    "plain_file"
+                ]
+            },
+            {
+                "required": [
+                    "json_file"
+                ]
+            },
+            {
+                "required": [
+                    "registry"
+                ]
+            },
+            {
+                "required": [
+                    "noop"
+                ]
+            }
+        ],
+        "title": "Target"
+    },
+    "Env": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "scope": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "machine": {
+                        "$ref": "#/EnvProperties"
+                    },
+                    "user": {
+                        "$ref": "#/EnvProperties"
+                    },
+                    "process": {
+                        "$ref": "#/EnvProperties"
                     }
-                }
-            },
-            "required": [
-                "description",
-                "category_id",
-                "category_name",
-                "id",
-                "links",
-                "name"
-            ],
-            "title": "Toptout"
-        },
-        "Links": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "main": {
-                    "type": "string",
-                    "format": "uri",
-                    "pattern": "^http[s]?:\\/\\/.+$"
                 },
-                "telemetry": {
-                    "type": "string",
-                    "format": "uri",
-                    "pattern": "^http[s]?:\\/\\/.+$"
-                },
-                "privacy": {
-                    "type": "string",
-                    "format": "uri",
-                    "pattern": "^http[s]?:\\/\\/.+$"
-                }
-            },
-            "required": [
-                "main"
-            ],
-            "title": "Links"
-        },
-        "Telemetry": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "pattern": "^[a-z0-9-]+$"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "is_official": {
-                    "type": "boolean"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/Links"
-                },
-                "target": {
-                    "$ref": "#/definitions/Target"
-                }
-            },
-            "required": [
-                "id",
-                "name",
-                "is_official"
-            ],
-            "title": "Telemetry"
-        },
-        "Target": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "exec": {
-                    "$ref": "#/definitions/Exec"
-                },
-                "env": {
-                    "$ref": "#/definitions/Env"
-                },
-                "plain_file": {
-                    "$ref": "#/definitions/PlainFile"
-                },
-                "json_file": {
-                    "$ref": "#/definitions/JSONFile"
-                },
-                "registry": {
-                    "$ref": "#/definitions/Registry"
-                },
-                "noop": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Noop"
+                "anyOf": [
+                    {
+                        "required": [
+                            "machine"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "process"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "user"
+                        ]
                     }
-                }
-            },
-            "anyOf": [
-                {
-                    "required": [
-                        "exec"
-                    ]
-                },
-                {
-                    "required": [
-                        "env"
-                    ]
-                },
-                {
-                    "required": [
-                        "plain_file"
-                    ]
-                },
-                {
-                    "required": [
-                        "json_file"
-                    ]
-                },
-                {
-                    "required": [
-                        "registry"
-                    ]
-                },
-                {
-                    "required": [
-                        "noop"
-                    ]
-                }
-            ],
-            "title": "Target"
+                ]
+            }
         },
-        "Env": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "scope": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "machine": {
-                            "$ref": "#/definitions/EnvProperties"
-                        },
-                        "user": {
-                            "$ref": "#/definitions/EnvProperties"
-                        },
-                        "process": {
-                            "$ref": "#/definitions/EnvProperties"
-                        }
+        "required": [
+            "scope"
+        ],
+        "title": "Env"
+    },
+    "EnvProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "path": {
+                "$ref": "#/Path"
+            },
+            "value": {
+                "$ref": "#/Value"
+            }
+        },
+        "required": [
+            "path",
+            "value"
+        ],
+        "title": "EnvProperties"
+    },
+    "Exec": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "scope": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "machine": {
+                        "$ref": "#/ExecProperties"
                     },
-                    "anyOf": [
-                        {
-                            "required": [
-                                "machine"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "process"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "user"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "required": [
-                "scope"
-            ],
-            "title": "Env"
-        },
-        "EnvProperties": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "path": {
-                    "$ref": "#/definitions/Path"
-                },
-                "value": {
-                    "$ref": "#/definitions/Value"
-                }
-            },
-            "required": [
-                "path",
-                "value"
-            ],
-            "title": "EnvProperties"
-        },
-        "Exec": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "scope": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "machine": {
-                            "$ref": "#/definitions/ExecProperties"
-                        },
-                        "user": {
-                            "$ref": "#/definitions/ExecProperties"
-                        },
-                        "process": {
-                            "$ref": "#/definitions/ExecProperties"
-                        }
+                    "user": {
+                        "$ref": "#/ExecProperties"
                     },
-                    "anyOf": [
-                        {
-                            "required": [
-                                "machine"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "process"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "user"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "required": [
-                "scope"
-            ],
-            "title": "Exec"
-        },
-        "ExecProperties": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "path": {
-                    "$ref": "#/definitions/Path"
+                    "process": {
+                        "$ref": "#/ExecProperties"
+                    }
                 },
-                "value": {
-                    "$ref": "#/definitions/Value"
-                }
-            },
-            "required": [
-                "path",
-                "value"
-            ],
-            "title": "ExecProperties"
-        },
-        "JSONFile": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "scope": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "machine": {
-                            "$ref": "#/definitions/JSONFileProperties"
-                        },
-                        "user": {
-                            "$ref": "#/definitions/JSONFileProperties"
-                        },
-                        "process": {
-                            "$ref": "#/definitions/JSONFileProperties"
-                        }
+                "anyOf": [
+                    {
+                        "required": [
+                            "machine"
+                        ]
                     },
-                    "anyOf": [
-                        {
-                            "required": [
-                                "machine"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "process"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "user"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "required": [
-                "scope"
-            ],
-            "title": "JSONFile"
-        },
-        "JSONFileProperties": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "path": {
-                    "$ref": "#/definitions/Path"
-                },
-                "selector": {
-                    "type": "string"
-                },
-                "value": {
-                    "$ref": "#/definitions/Value"
-                },
-                "display_value": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "display_value",
-                "path",
-                "selector",
-                "value"
-            ],
-            "title": "JSONFileProperties"
-        },
-        "PlainFile": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "scope": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "machine": {
-                            "$ref": "#/definitions/PlainFileProperties"
-                        },
-                        "user": {
-                            "$ref": "#/definitions/PlainFileProperties"
-                        },
-                        "process": {
-                            "$ref": "#/definitions/PlainFileProperties"
-                        }
+                    {
+                        "required": [
+                            "process"
+                        ]
                     },
-                    "anyOf": [
-                        {
-                            "required": [
-                                "machine"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "process"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "user"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "required": [
-                "scope"
-            ],
-            "title": "PlainFile"
+                    {
+                        "required": [
+                            "user"
+                        ]
+                    }
+                ]
+            }
         },
-        "PlainFileProperties": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "path": {
-                    "$ref": "#/definitions/Path"
-                },
-                "selector": {
-                    "type": "string"
-                },
-                "value": {
-                    "$ref": "#/definitions/Value"
-                },
-                "display_value": {
-                    "type": "string"
-                }
+        "required": [
+            "scope"
+        ],
+        "title": "Exec"
+    },
+    "ExecProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "path": {
+                "$ref": "#/Path"
             },
-            "required": [
-                "display_value",
-                "path",
-                "selector",
-                "value"
-            ],
-            "title": "PlainFileProperties"
+            "value": {
+                "$ref": "#/Value"
+            }
         },
-        "Registry": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "scope": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "machine": {
-                            "$ref": "#/definitions/RegistryProperties"
-                        },
-                        "user": {
-                            "$ref": "#/definitions/RegistryProperties"
-                        },
-                        "process": {
-                            "$ref": "#/definitions/RegistryProperties"
-                        }
+        "required": [
+            "path",
+            "value"
+        ],
+        "title": "ExecProperties"
+    },
+    "JSONFile": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "scope": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "machine": {
+                        "$ref": "#/JSONFileProperties"
                     },
-                    "anyOf": [
-                        {
-                            "required": [
-                                "machine"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "process"
-                            ]
-                        },
-                        {
-                            "required": [
-                                "user"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "required": [
-                "scope"
-            ],
-            "title": "Registry"
+                    "user": {
+                        "$ref": "#/JSONFileProperties"
+                    },
+                    "process": {
+                        "$ref": "#/JSONFileProperties"
+                    }
+                },
+                "anyOf": [
+                    {
+                        "required": [
+                            "machine"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "process"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "user"
+                        ]
+                    }
+                ]
+            }
         },
-        "RegistryProperties": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "root": {
-                    "type": "string",
-                    "enum": [
-                        "HKEY_CLASSES_ROOT",
-                        "HKEY_CURRENT_CONFIG",
-                        "HKEY_CURRENT_USER",
-                        "HKEY_CURRENT_USER_LOCAL_SETTINGS",
-                        "HKEY_LOCAL_MACHINE",
-                        "HKEY_PERFORMANCE_DATA",
-                        "HKEY_PERFORMANCE_NLSTEXT",
-                        "HKEY_PERFORMANCE_TEXT",
-                        "HKEY_USERS"
-                    ]
-                },
-                "path": {
-                    "type": "string",
-                    "pattern": "^(?!\\\\).+?(?<!\\\\)$"
-                },
-                "key": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "REG_BINARY",
-                        "REG_DWORD",
-                        "REG_DWORD_LITTLE_ENDIAN",
-                        "REG_DWORD_BIG_ENDIAN",
-                        "REG_EXPAND_SZ",
-                        "REG_LINK",
-                        "REG_MULTI_SZ",
-                        "REG_NONE",
-                        "REG_QWORD",
-                        "REG_QWORD_LITTLE_ENDIAN",
-                        "REG_SZ"
-                    ]
-                },
-                "value": {
-                    "$ref": "#/definitions/Value"
-                }
+        "required": [
+            "scope"
+        ],
+        "title": "JSONFile"
+    },
+    "JSONFileProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "path": {
+                "$ref": "#/Path"
             },
-            "required": [
-                "root",
-                "path",
-                "key",
-                "type",
-                "value"
-            ],
-            "title": "RegistryProperties"
+            "selector": {
+                "type": "string"
+            },
+            "value": {
+                "$ref": "#/Value"
+            },
+            "display_value": {
+                "type": "string"
+            }
         },
-        "Noop": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "name": {
-                    "type": "string"
+        "required": [
+            "display_value",
+            "path",
+            "selector",
+            "value"
+        ],
+        "title": "JSONFileProperties"
+    },
+    "PlainFile": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "scope": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "machine": {
+                        "$ref": "#/PlainFileProperties"
+                    },
+                    "user": {
+                        "$ref": "#/PlainFileProperties"
+                    },
+                    "process": {
+                        "$ref": "#/PlainFileProperties"
+                    }
                 },
-                "link": {
-                    "type": "string",
-                    "format": "uri",
-                    "pattern": "^http[s]?:\\/\\/.+$"
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "description",
-                "link",
-                "name"
-            ],
-            "title": "Noop"
+                "anyOf": [
+                    {
+                        "required": [
+                            "machine"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "process"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "user"
+                        ]
+                    }
+                ]
+            }
         },
-        "Path": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "linux": {
-                    "type": "string"
-                },
-                "macos": {
-                    "type": "string"
-                },
-                "windows": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": "string"
-                }
+        "required": [
+            "scope"
+        ],
+        "title": "PlainFile"
+    },
+    "PlainFileProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "path": {
+                "$ref": "#/Path"
             },
-            "anyOf": [
-                {
-                    "required": [
-                        "default"
-                    ]
-                },
-                {
-                    "required": [
-                        "linux"
-                    ]
-                },
-                {
-                    "required": [
-                        "macos"
-                    ]
-                },
-                {
-                    "required": [
-                        "windows"
-                    ]
-                }
-            ],
-            "title": "Path"
+            "selector": {
+                "type": "string"
+            },
+            "value": {
+                "$ref": "#/Value"
+            },
+            "display_value": {
+                "type": "string"
+            }
         },
-        "Value": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "opt_out": {
-                    "type": "string"
+        "required": [
+            "display_value",
+            "path",
+            "selector",
+            "value"
+        ],
+        "title": "PlainFileProperties"
+    },
+    "Registry": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "scope": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "machine": {
+                        "$ref": "#/RegistryProperties"
+                    },
+                    "user": {
+                        "$ref": "#/RegistryProperties"
+                    },
+                    "process": {
+                        "$ref": "#/RegistryProperties"
+                    }
                 },
-                "opt_in": {
-                    "oneOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                }
+                "anyOf": [
+                    {
+                        "required": [
+                            "machine"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "process"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "user"
+                        ]
+                    }
+                ]
+            }
+        },
+        "required": [
+            "scope"
+        ],
+        "title": "Registry"
+    },
+    "RegistryProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "root": {
+                "type": "string",
+                "enum": [
+                    "HKEY_CLASSES_ROOT",
+                    "HKEY_CURRENT_CONFIG",
+                    "HKEY_CURRENT_USER",
+                    "HKEY_CURRENT_USER_LOCAL_SETTINGS",
+                    "HKEY_LOCAL_MACHINE",
+                    "HKEY_PERFORMANCE_DATA",
+                    "HKEY_PERFORMANCE_NLSTEXT",
+                    "HKEY_PERFORMANCE_TEXT",
+                    "HKEY_USERS"
+                ]
             },
-            "required": [
-                "opt_in",
-                "opt_out"
-            ],
-            "title": "Value"
-        }
+            "path": {
+                "type": "string",
+                "pattern": "^(?!\\\\).+?(?<!\\\\)$"
+            },
+            "key": {
+                "type": "string"
+            },
+            "type": {
+                "type": "string",
+                "enum": [
+                    "REG_BINARY",
+                    "REG_DWORD",
+                    "REG_DWORD_LITTLE_ENDIAN",
+                    "REG_DWORD_BIG_ENDIAN",
+                    "REG_EXPAND_SZ",
+                    "REG_LINK",
+                    "REG_MULTI_SZ",
+                    "REG_NONE",
+                    "REG_QWORD",
+                    "REG_QWORD_LITTLE_ENDIAN",
+                    "REG_SZ"
+                ]
+            },
+            "value": {
+                "$ref": "#/Value"
+            }
+        },
+        "required": [
+            "root",
+            "path",
+            "key",
+            "type",
+            "value"
+        ],
+        "title": "RegistryProperties"
+    },
+    "Noop": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "link": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^http[s]?:\\/\\/.+$"
+            },
+            "description": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "description",
+            "link",
+            "name"
+        ],
+        "title": "Noop"
+    },
+    "Path": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "linux": {
+                "type": "string"
+            },
+            "macos": {
+                "type": "string"
+            },
+            "windows": {
+                "type": "string"
+            },
+            "default": {
+                "type": "string"
+            }
+        },
+        "anyOf": [
+            {
+                "required": [
+                    "default"
+                ]
+            },
+            {
+                "required": [
+                    "linux"
+                ]
+            },
+            {
+                "required": [
+                    "macos"
+                ]
+            },
+            {
+                "required": [
+                    "windows"
+                ]
+            }
+        ],
+        "title": "Path"
+    },
+    "Value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "opt_out": {
+                "type": "string"
+            },
+            "opt_in": {
+                "oneOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "null"
+                    }
+                ]
+            }
+        },
+        "required": [
+            "opt_in",
+            "opt_out"
+        ],
+        "title": "Value"
     }
 }
