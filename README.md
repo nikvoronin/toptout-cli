@@ -1,16 +1,17 @@
 # [Toptout](https://github.com/beatcracker/toptout) --command line interactive
 
-Read more at [Toptout](https://github.com/beatcracker/toptout)
-
 > In a draft state!
 
 ## Requirements
+
+.NET 5
+
+### Prototype
 
 - python 3
   - argparser
   - json
   - requests
-  - win32 (registry)
 
 ## Command Line Parameters
 
@@ -18,16 +19,23 @@ Read more at [Toptout](https://github.com/beatcracker/toptout)
 
 `toptout-cli`
 
-Show recommends about `update` if it cannot find local db file `toptout.json`.
-Ignore list and options are in the [user-options.txt](#useroptions)
+Print recommends about `update` if it cannot find local db file `toptout.json`.
+The options list i.e. user defined options are in the [user-options.txt](#useroptions)
 
 ### Update
 
-- `toptout-cli -u`
-- `toptout-cli --update`
-- `toptout-cli --force`
+- toptout-cli `update`
+- toptout-cli `force`
 
 Download `.json` datas from `https://github.com/beatcracker/toptout/tree/master/data` and consolidate it in a local db. Also creates the `user-options` file.
+
+#### Provider
+
+How to download data
+
+- toptout-cli update --user-repo johnd/reporepo `--provider swagger`
+- toptout-cli update `--provider flurl`
+- toptout-cli update `--provider http`
 
 ### ¿ Revert / Undo ?
 
@@ -48,19 +56,18 @@ print, show, dry, list, ...
 
 ## user.options
 
-1. `+-.` without spaces. But some symbols can appear, like parenthesis [], (), }}.
-   - `+` turn _tm_ on
-   - `-` switch _tm_ off
-   - `_`, `' '` , `.` do nothing or ignore. Default behavior. `¿¿¿ [] [ ] = [.] ???`
+1. `+-._` without spaces. But some symbols can appear, like parenthesis [], (), }}.
+   - `[+]` turn _tm_ on
+   - `[-]` switch _tm_ off
+   - `[_]`, `[ ]` , `[.]` do nothing or ignore. Default behavior
 2. Any spacers like space or tab
 3. Name of the module
 
 ```plain
 [-] switch telemetry off
-[+] turn telemetry back again
-
-[-] name of the module
-[+] name of the module 2
+(+) turn telemetry back again
+{-} name of the module
+|+| name of the module 2
 [.] ignore opts for module_name_3
 [ ] do nothing for module_that_called_four
 [_] still do nothing mod-5
