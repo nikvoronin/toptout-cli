@@ -35,7 +35,7 @@ How to download data
 
 - toptout-cli update --user-repo johnd/reporepo `--provider swagger`
 - toptout-cli update `--provider flurl`
-- toptout-cli update `--provider http`
+- toptout-cli update `--provider github`
 
 ### ¿ Revert / Undo ?
 

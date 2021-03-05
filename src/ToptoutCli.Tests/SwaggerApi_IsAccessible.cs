@@ -1,6 +1,8 @@
 ﻿using IO.Swagger.Api;
 using IO.Swagger.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using ToptoutCli.Adapters;
 using Xunit;
 
 namespace ToptoutCli.Tests
@@ -44,6 +46,23 @@ namespace ToptoutCli.Tests
             }
 
             Assert.NotNull( t );
+        }
+
+        [Fact]
+        public async Task Call_To_SwaggerTelemetryApi()
+        {
+            Adapters.ITelemetryApi teleApi = new SwaggerTelemetryApi();
+
+            IReadOnlyDictionary<string, Toptout> t = null;
+            try {
+                t = await teleApi.ListTelemetryAsync();
+            }
+            catch {
+                Assert.True(false, "Exception during ListTelemetryAsync");
+            }
+
+            Assert.NotNull(t);
+            Assert.True(t.Count > 0);
         }
     }
 }
