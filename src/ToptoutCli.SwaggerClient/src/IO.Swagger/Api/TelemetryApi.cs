@@ -30,8 +30,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>List&lt;DefinitionsToptout&gt;</returns>
-        List<DefinitionsToptout> GetTelemetry ();
+        /// <returns>List&lt;Toptout&gt;</returns>
+        List<Toptout> GetTelemetry ();
 
         /// <summary>
         /// Returns telemetry details for all known application ids
@@ -40,8 +40,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of List&lt;DefinitionsToptout&gt;</returns>
-        ApiResponse<List<DefinitionsToptout>> GetTelemetryWithHttpInfo ();
+        /// <returns>ApiResponse of List&lt;Toptout&gt;</returns>
+        ApiResponse<List<Toptout>> GetTelemetryWithHttpInfo ();
         /// <summary>
         /// Returns telemetry details for applications in specific category
         /// </summary>
@@ -50,8 +50,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="category"></param>
-        /// <returns>List&lt;DefinitionsToptout&gt;</returns>
-        List<DefinitionsToptout> GetTelemetryByCategory (string category);
+        /// <returns>List&lt;Toptout&gt;</returns>
+        List<Toptout> GetTelemetryByCategory (string category);
 
         /// <summary>
         /// Returns telemetry details for applications in specific category
@@ -61,8 +61,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="category"></param>
-        /// <returns>ApiResponse of List&lt;DefinitionsToptout&gt;</returns>
-        ApiResponse<List<DefinitionsToptout>> GetTelemetryByCategoryWithHttpInfo (string category);
+        /// <returns>ApiResponse of List&lt;Toptout&gt;</returns>
+        ApiResponse<List<Toptout>> GetTelemetryByCategoryWithHttpInfo (string category);
         /// <summary>
         /// Returns telemetry details for specific application id
         /// </summary>
@@ -71,8 +71,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>DefinitionsToptout</returns>
-        DefinitionsToptout GetTelemetryById (string id);
+        /// <returns>Toptout</returns>
+        Toptout GetTelemetryById (string id);
 
         /// <summary>
         /// Returns telemetry details for specific application id
@@ -82,8 +82,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of DefinitionsToptout</returns>
-        ApiResponse<DefinitionsToptout> GetTelemetryByIdWithHttpInfo (string id);
+        /// <returns>ApiResponse of Toptout</returns>
+        ApiResponse<Toptout> GetTelemetryByIdWithHttpInfo (string id);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -93,8 +93,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of List&lt;DefinitionsToptout&gt;</returns>
-        System.Threading.Tasks.Task<List<DefinitionsToptout>> GetTelemetryAsync ();
+        /// <returns>Task of List&lt;Toptout&gt;</returns>
+        System.Threading.Tasks.Task<List<Toptout>> GetTelemetryAsync ();
 
         /// <summary>
         /// Returns telemetry details for all known application ids
@@ -103,8 +103,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (List&lt;DefinitionsToptout&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<DefinitionsToptout>>> GetTelemetryAsyncWithHttpInfo ();
+        /// <returns>Task of ApiResponse (List&lt;Toptout&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Toptout>>> GetTelemetryAsyncWithHttpInfo ();
         /// <summary>
         /// Returns telemetry details for applications in specific category
         /// </summary>
@@ -113,8 +113,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="category"></param>
-        /// <returns>Task of List&lt;DefinitionsToptout&gt;</returns>
-        System.Threading.Tasks.Task<List<DefinitionsToptout>> GetTelemetryByCategoryAsync (string category);
+        /// <returns>Task of List&lt;Toptout&gt;</returns>
+        System.Threading.Tasks.Task<List<Toptout>> GetTelemetryByCategoryAsync (string category);
 
         /// <summary>
         /// Returns telemetry details for applications in specific category
@@ -124,8 +124,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="category"></param>
-        /// <returns>Task of ApiResponse (List&lt;DefinitionsToptout&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<DefinitionsToptout>>> GetTelemetryByCategoryAsyncWithHttpInfo (string category);
+        /// <returns>Task of ApiResponse (List&lt;Toptout&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Toptout>>> GetTelemetryByCategoryAsyncWithHttpInfo (string category);
         /// <summary>
         /// Returns telemetry details for specific application id
         /// </summary>
@@ -134,8 +134,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>Task of DefinitionsToptout</returns>
-        System.Threading.Tasks.Task<DefinitionsToptout> GetTelemetryByIdAsync (string id);
+        /// <returns>Task of Toptout</returns>
+        System.Threading.Tasks.Task<Toptout> GetTelemetryByIdAsync (string id);
 
         /// <summary>
         /// Returns telemetry details for specific application id
@@ -145,8 +145,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>Task of ApiResponse (DefinitionsToptout)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DefinitionsToptout>> GetTelemetryByIdAsyncWithHttpInfo (string id);
+        /// <returns>Task of ApiResponse (Toptout)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Toptout>> GetTelemetryByIdAsyncWithHttpInfo (string id);
         #endregion Asynchronous Operations
     }
 
@@ -262,10 +262,10 @@ namespace IO.Swagger.Api
         /// Returns telemetry details for all known application ids 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>List&lt;DefinitionsToptout&gt;</returns>
-        public List<DefinitionsToptout> GetTelemetry ()
+        /// <returns>List&lt;Toptout&gt;</returns>
+        public List<Toptout> GetTelemetry ()
         {
-             ApiResponse<List<DefinitionsToptout>> localVarResponse = GetTelemetryWithHttpInfo();
+             ApiResponse<List<Toptout>> localVarResponse = GetTelemetryWithHttpInfo();
              return localVarResponse.Data;
         }
 
@@ -273,8 +273,8 @@ namespace IO.Swagger.Api
         /// Returns telemetry details for all known application ids 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of List&lt;DefinitionsToptout&gt;</returns>
-        public ApiResponse< List<DefinitionsToptout> > GetTelemetryWithHttpInfo ()
+        /// <returns>ApiResponse of List&lt;Toptout&gt;</returns>
+        public ApiResponse< List<Toptout> > GetTelemetryWithHttpInfo ()
         {
 
             var localVarPath = "./telemetry/";
@@ -312,19 +312,19 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DefinitionsToptout>>(localVarStatusCode,
+            return new ApiResponse<List<Toptout>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
-                (List<DefinitionsToptout>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DefinitionsToptout>)));
+                (List<Toptout>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Toptout>)));
         }
 
         /// <summary>
         /// Returns telemetry details for all known application ids 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of List&lt;DefinitionsToptout&gt;</returns>
-        public async System.Threading.Tasks.Task<List<DefinitionsToptout>> GetTelemetryAsync ()
+        /// <returns>Task of List&lt;Toptout&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Toptout>> GetTelemetryAsync ()
         {
-             ApiResponse<List<DefinitionsToptout>> localVarResponse = await GetTelemetryAsyncWithHttpInfo();
+             ApiResponse<List<Toptout>> localVarResponse = await GetTelemetryAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
@@ -333,8 +333,8 @@ namespace IO.Swagger.Api
         /// Returns telemetry details for all known application ids 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (List&lt;DefinitionsToptout&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<DefinitionsToptout>>> GetTelemetryAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (List&lt;Toptout&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<Toptout>>> GetTelemetryAsyncWithHttpInfo ()
         {
 
             var localVarPath = "./telemetry/";
@@ -372,9 +372,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DefinitionsToptout>>(localVarStatusCode,
+            return new ApiResponse<List<Toptout>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
-                (List<DefinitionsToptout>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DefinitionsToptout>)));
+                (List<Toptout>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Toptout>)));
         }
 
         /// <summary>
@@ -382,10 +382,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="category"></param>
-        /// <returns>List&lt;DefinitionsToptout&gt;</returns>
-        public List<DefinitionsToptout> GetTelemetryByCategory (string category)
+        /// <returns>List&lt;Toptout&gt;</returns>
+        public List<Toptout> GetTelemetryByCategory (string category)
         {
-             ApiResponse<List<DefinitionsToptout>> localVarResponse = GetTelemetryByCategoryWithHttpInfo(category);
+             ApiResponse<List<Toptout>> localVarResponse = GetTelemetryByCategoryWithHttpInfo(category);
              return localVarResponse.Data;
         }
 
@@ -394,8 +394,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="category"></param>
-        /// <returns>ApiResponse of List&lt;DefinitionsToptout&gt;</returns>
-        public ApiResponse< List<DefinitionsToptout> > GetTelemetryByCategoryWithHttpInfo (string category)
+        /// <returns>ApiResponse of List&lt;Toptout&gt;</returns>
+        public ApiResponse< List<Toptout> > GetTelemetryByCategoryWithHttpInfo (string category)
         {
             // verify the required parameter 'category' is set
             if (category == null)
@@ -437,9 +437,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DefinitionsToptout>>(localVarStatusCode,
+            return new ApiResponse<List<Toptout>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
-                (List<DefinitionsToptout>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DefinitionsToptout>)));
+                (List<Toptout>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Toptout>)));
         }
 
         /// <summary>
@@ -447,10 +447,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="category"></param>
-        /// <returns>Task of List&lt;DefinitionsToptout&gt;</returns>
-        public async System.Threading.Tasks.Task<List<DefinitionsToptout>> GetTelemetryByCategoryAsync (string category)
+        /// <returns>Task of List&lt;Toptout&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Toptout>> GetTelemetryByCategoryAsync (string category)
         {
-             ApiResponse<List<DefinitionsToptout>> localVarResponse = await GetTelemetryByCategoryAsyncWithHttpInfo(category);
+             ApiResponse<List<Toptout>> localVarResponse = await GetTelemetryByCategoryAsyncWithHttpInfo(category);
              return localVarResponse.Data;
 
         }
@@ -460,8 +460,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="category"></param>
-        /// <returns>Task of ApiResponse (List&lt;DefinitionsToptout&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<DefinitionsToptout>>> GetTelemetryByCategoryAsyncWithHttpInfo (string category)
+        /// <returns>Task of ApiResponse (List&lt;Toptout&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<Toptout>>> GetTelemetryByCategoryAsyncWithHttpInfo (string category)
         {
             // verify the required parameter 'category' is set
             if (category == null)
@@ -503,9 +503,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<DefinitionsToptout>>(localVarStatusCode,
+            return new ApiResponse<List<Toptout>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
-                (List<DefinitionsToptout>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<DefinitionsToptout>)));
+                (List<Toptout>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Toptout>)));
         }
 
         /// <summary>
@@ -513,10 +513,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>DefinitionsToptout</returns>
-        public DefinitionsToptout GetTelemetryById (string id)
+        /// <returns>Toptout</returns>
+        public Toptout GetTelemetryById (string id)
         {
-             ApiResponse<DefinitionsToptout> localVarResponse = GetTelemetryByIdWithHttpInfo(id);
+             ApiResponse<Toptout> localVarResponse = GetTelemetryByIdWithHttpInfo(id);
              return localVarResponse.Data;
         }
 
@@ -525,8 +525,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>ApiResponse of DefinitionsToptout</returns>
-        public ApiResponse< DefinitionsToptout > GetTelemetryByIdWithHttpInfo (string id)
+        /// <returns>ApiResponse of Toptout</returns>
+        public ApiResponse< Toptout > GetTelemetryByIdWithHttpInfo (string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -568,9 +568,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DefinitionsToptout>(localVarStatusCode,
+            return new ApiResponse<Toptout>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
-                (DefinitionsToptout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(DefinitionsToptout)));
+                (Toptout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Toptout)));
         }
 
         /// <summary>
@@ -578,10 +578,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>Task of DefinitionsToptout</returns>
-        public async System.Threading.Tasks.Task<DefinitionsToptout> GetTelemetryByIdAsync (string id)
+        /// <returns>Task of Toptout</returns>
+        public async System.Threading.Tasks.Task<Toptout> GetTelemetryByIdAsync (string id)
         {
-             ApiResponse<DefinitionsToptout> localVarResponse = await GetTelemetryByIdAsyncWithHttpInfo(id);
+             ApiResponse<Toptout> localVarResponse = await GetTelemetryByIdAsyncWithHttpInfo(id);
              return localVarResponse.Data;
 
         }
@@ -591,8 +591,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <returns>Task of ApiResponse (DefinitionsToptout)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<DefinitionsToptout>> GetTelemetryByIdAsyncWithHttpInfo (string id)
+        /// <returns>Task of ApiResponse (Toptout)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Toptout>> GetTelemetryByIdAsyncWithHttpInfo (string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -634,9 +634,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<DefinitionsToptout>(localVarStatusCode,
+            return new ApiResponse<Toptout>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
-                (DefinitionsToptout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(DefinitionsToptout)));
+                (Toptout) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Toptout)));
         }
 
     }

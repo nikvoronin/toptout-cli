@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="gettelemetry"></a>
 # **GetTelemetry**
-> List<DefinitionsToptout> GetTelemetry ()
+> List<Toptout> GetTelemetry ()
 
 Returns telemetry details for all known application ids
 
@@ -33,7 +33,7 @@ namespace Example
             try
             {
                 // Returns telemetry details for all known application ids
-                List&lt;DefinitionsToptout&gt; result = apiInstance.GetTelemetry();
+                List&lt;Toptout&gt; result = apiInstance.GetTelemetry();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -50,7 +50,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List<DefinitionsToptout>**](DefinitionsToptout.md)
+[**List<Toptout>**](Toptout.md)
 
 ### Authorization
 
@@ -64,7 +64,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 <a name="gettelemetrybycategory"></a>
 # **GetTelemetryByCategory**
-> List<DefinitionsToptout> GetTelemetryByCategory (string category)
+> List<Toptout> GetTelemetryByCategory (string category)
 
 Returns telemetry details for applications in specific category
 
@@ -88,7 +88,7 @@ namespace Example
             try
             {
                 // Returns telemetry details for applications in specific category
-                List&lt;DefinitionsToptout&gt; result = apiInstance.GetTelemetryByCategory(category);
+                List&lt;Toptout&gt; result = apiInstance.GetTelemetryByCategory(category);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<DefinitionsToptout>**](DefinitionsToptout.md)
+[**List<Toptout>**](Toptout.md)
 
 ### Authorization
 
@@ -122,7 +122,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 <a name="gettelemetrybyid"></a>
 # **GetTelemetryById**
-> DefinitionsToptout GetTelemetryById (string id)
+> Toptout GetTelemetryById (string id)
 
 Returns telemetry details for specific application id
 
@@ -146,7 +146,7 @@ namespace Example
             try
             {
                 // Returns telemetry details for specific application id
-                DefinitionsToptout result = apiInstance.GetTelemetryById(id);
+                Toptout result = apiInstance.GetTelemetryById(id);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DefinitionsToptout**](DefinitionsToptout.md)
+[**Toptout**](Toptout.md)
 
 ### Authorization
 
