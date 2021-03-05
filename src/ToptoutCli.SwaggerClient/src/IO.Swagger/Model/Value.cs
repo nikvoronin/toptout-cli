@@ -32,26 +32,10 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <param name="optOut">optOut (required).</param>
         /// <param name="optIn">optIn (required).</param>
-        public Value(string optOut = default(string), OneOfValueOptIn optIn = default(OneOfValueOptIn))
+        public Value(string optOut = default(string), string optIn = default(string))
         {
-            // to ensure "optOut" is required (not null)
-            if (optOut == null)
-            {
-                throw new InvalidDataException("optOut is a required property for Value and cannot be null");
-            }
-            else
-            {
-                this.OptOut = optOut;
-            }
-            // to ensure "optIn" is required (not null)
-            if (optIn == null)
-            {
-                throw new InvalidDataException("optIn is a required property for Value and cannot be null");
-            }
-            else
-            {
-                this.OptIn = optIn;
-            }
+            this.OptOut = optOut;
+            this.OptIn = optIn;
         }
         
         /// <summary>
@@ -64,7 +48,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets OptIn
         /// </summary>
         [DataMember(Name="opt_in", EmitDefaultValue=false)]
-        public OneOfValueOptIn OptIn { get; set; }
+        public string OptIn { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
