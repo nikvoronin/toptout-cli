@@ -13,9 +13,9 @@ namespace ToptoutCli
             var cmd = new RootCommand( description: "Easily opt-out from telemetry collection." );
 
             cmd.AddCommand( UpdateCommand.Create(
-                (userRepo) => {
+                (provider, userRepoPair, dataPath) => {
                     // TODO Download json data
-                    Console.WriteLine($"[UPDATE] handler {userRepo}");
+                    Console.WriteLine($"[UPDATE] handler {provider}, {userRepoPair}, {dataPath}");
                 }));
 
             cmd.Handler = CommandHandler.Create( ( ) => {
