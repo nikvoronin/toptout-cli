@@ -14,7 +14,7 @@ namespace ToptoutCli
         public const string Default_ToptoutDataUserRepo = "beatcracker/toptout";
         public const string Default_ToptoutRepoPath = "/data";
 
-        public enum Provider { Swagger, Github }
+        public enum Provider { Swagger, Github, Local }
 
         private UpdateCommand() { }
 
@@ -55,7 +55,10 @@ namespace ToptoutCli
 
         public static string Validate(IReadOnlyList<Token> tokens)
         {
-            if (tokens.Count != 1)
+            if (tokens.Count == 0)
+                return null;
+
+            if (tokens.Count > 1)
                 return "ERROR: Too much arguments";
 
             if (tokens[0].Type != TokenType.Argument)

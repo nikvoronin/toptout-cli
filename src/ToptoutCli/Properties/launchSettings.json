@@ -2,7 +2,7 @@
   "profiles": {
     "ToptoutCli": {
       "commandName": "Project",
-      "commandLineArgs": "update --user-repo nikvoronin/toptoff"
+      "commandLineArgs": "update"
     }
   }
 }

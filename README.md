@@ -35,7 +35,7 @@ How to download data
 
 ### Github Native Api Provider
 
-> toptout-cli update `--provider github` --repo 'https://api.github.com/repos/johnydou/teleoff/git/trees/main' --path '/telemetry/data/json'
+> toptout-cli update `--provider github` --user-repo 'johnydou/teleoff' --path '/telemetry/data/json'
 
 - `--provider github`
 - `--user-repo` 'johnydou/teleoff'
