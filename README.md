@@ -1,4 +1,4 @@
-# [Toptout](https://github.com/beatcracker/toptout) --command line interactive
+# [Toptout](https://github.com/beatcracker/toptout) interactive --command-line
 
 > In a draft state!
 
