@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using IO.Swagger.Model;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
@@ -30,7 +32,8 @@ namespace ToptoutCli
                             break;
                         default:
                         case UpdateCommand.Provider.Local:
-                            throw new NotImplementedException();
+                            api = new LocalTelemetryAdapter( new LocalDataProvider(Default_LocalDataFilename) );
+                            break;
                     }
 
                     var apps = api.ListTelemetryAsync().GetAwaiter().GetResult();
@@ -38,9 +41,24 @@ namespace ToptoutCli
                 }));
 
             root.Handler = CommandHandler.Create( ( ) => {
-                // TODO do MAIN toptout things
-                Console.WriteLine( "[ROOT] handler" );
-            } );
+                Dictionary<string, Toptout> tm = null;
+
+                if (!File.Exists(Default_LocalDataFilename)) {
+                    Console.WriteLine("[!] Warning. Can not find local database. Use the `force`, Luke.");
+                    return; // TODO define errorlevels
+                }
+                else {
+                    try {
+                        tm = new LocalDataProvider(Default_LocalDataFilename).LoadLocalData();
+                    }
+                    catch {
+                        Console.WriteLine("[!] Error. Can not load local database. Should try to `update`.");
+                        return; // TODO define errorlevels
+                    }
+                }
+
+                Console.WriteLine($"Loaded {tm.Count} apps."); // STUB
+            });
 
             int errlevel = root.Invoke( args );
 
