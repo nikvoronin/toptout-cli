@@ -11,44 +11,43 @@ namespace ToptoutCli
 {
     public class UpdateCommand
     {
-        public const string Default_UserRepo = "beatcracker/toptout";
+        public const string Default_ToptoutDataRepo = @"https://api.github.com/repos/beatcracker/toptout/git/trees/master";
+        public const string Default_ToptoutRepoPath = "/data";
+
+        public enum Provider { Swagger, Github }
 
         private UpdateCommand() { }
 
         public static Command Create(Action<string> handler)
         {
             var cmd = new Command("update", "Download and update local database.");
-            cmd.AddAlias("u");
             cmd.AddAlias("force");
 
             cmd.Handler = CommandHandler.Create(handler);
 
-            var o = new Option<string> (
-                alias: "--user-repo",
-                description: "Changes default 'user/repo' pair to another one",
-                getDefaultValue: () => Default_UserRepo
+            var providerOption = new Option<Provider> (
+                alias: "--provider",
+                description: "Data retrieving method",
+                getDefaultValue: () => Provider.Swagger
                 );
 
-            o.AllowMultipleArgumentsPerToken = false;
-            o.AddValidator( r => Validate(r.Tokens) );
+            var repoOption = new Option<string> (
+                alias: "--repo",
+                description: "Change github repository",
+                getDefaultValue: () => Default_ToptoutDataRepo
+                );
 
-            cmd.AddOption(o);
+            var pathOption = new Option<string> (
+                alias: "--path",
+                description: "Path to telemetry data inside a github repository",
+                getDefaultValue: () => Default_ToptoutRepoPath
+                );
+
+            cmd.AddOption(providerOption);
+            cmd.AddOption(repoOption);
+            cmd.AddOption(pathOption);
 
             return cmd;
-        }
-
-        public static string Validate(IReadOnlyList<Token> tokens)
-        {
-            if (tokens.Count != 1)
-                return "ERROR: Too much arguments";
-
-            if (tokens[0].Type != TokenType.Argument)
-                return "ERROR: Not an argument";
-
-            if (tokens[0].Value.Split("/").Length != 2)
-                return "ERROR: Wrong argument format. Expected 'username/repo'";
-
-            return null;
         }
     }
 }
