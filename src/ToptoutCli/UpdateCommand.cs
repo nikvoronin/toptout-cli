@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.CommandLine.Parsing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using ToptoutCli.Adapters;
+using ToptoutCli.Provider;
 
 namespace ToptoutCli
 {
@@ -18,12 +19,14 @@ namespace ToptoutCli
 
         private UpdateCommand() { }
 
-        public static Command Create(Action<Provider, string, string> handler)
+        public static Command Create(Action<Provider, string, string> executor = null)
         {
             var cmd = new Command("update", "Download and update local database.");
             cmd.AddAlias("force");
 
-            cmd.Handler = CommandHandler.Create(handler);
+            cmd.Handler = CommandHandler.Create( executor != null 
+                ? executor 
+                : new Action<Provider, string, string>(Execute));
 
             var providerOption = new Option<Provider> (
                 alias: "--provider",
@@ -51,6 +54,28 @@ namespace ToptoutCli
             cmd.AddOption(pathOption);
 
             return cmd;
+        }
+
+        static void Execute(Provider provider, string userRepo, string path)
+        {
+            ITelemetryApi api;
+            switch (provider) {
+                case Provider.Swagger:
+                    api = new SwaggerTelemetryAdapter();
+                    break;
+
+                case Provider.Github:
+                    api = new GithubTelemetryAdapter(new GithubDataProvider(userRepo, path));
+                    break;
+
+                default:
+                case Provider.Local:
+                    api = new LocalTelemetryAdapter(new LocalDataProvider(Const.Default_LocalDataFilename));
+                    break;
+            }
+
+            var apps = api.ListTelemetryAsync().GetAwaiter().GetResult();
+            File.WriteAllText(Const.Default_LocalDataFilename, JsonConvert.SerializeObject(apps));
         }
 
         public static string Validate(IReadOnlyList<Token> tokens)
