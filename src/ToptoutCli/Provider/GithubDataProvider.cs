@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ToptoutCli.Model.Github;
-using Flurl;
 
 namespace ToptoutCli.Provider
 {
@@ -22,7 +21,8 @@ namespace ToptoutCli.Provider
 
         public async Task<string> GetJsonFileAsString(string appId)
         {
-            string jsonPath = $"https://raw.githubusercontent.com/{_userRepoPair}/master/data/{appId}.json";
+            string jsonPath = "https://" + $"raw.githubusercontent.com/{_userRepoPair}/master/data/{appId}.json";
+
             return await jsonPath.GetStringAsync();
         }
 
@@ -49,7 +49,7 @@ namespace ToptoutCli.Provider
                 .Where(s => !string.IsNullOrWhiteSpace(s.Trim()))
                 .ToArray();
 
-            string apiurl = $"https://api.github.com/repos/{_userRepoPair}/git/trees/master";
+            string apiurl = "https://" + $"api.github.com/repos/{_userRepoPair}/git/trees/master";
 
             return await FindDataFolderRecursiveAsync(apiurl, subfolders);
         }

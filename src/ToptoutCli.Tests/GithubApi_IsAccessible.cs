@@ -3,6 +3,7 @@ using IO.Swagger.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToptoutCli.Adapters;
+using ToptoutCli.Provider;
 using Xunit;
 
 namespace ToptoutCli.Tests
@@ -12,7 +13,11 @@ namespace ToptoutCli.Tests
         [Fact]
         public async Task Call_To_GithubTelemetryApi()
         {
-            Adapters.ITelemetryApi teleApi = new GithubTelemetryApi();
+            var provider = new GithubDataProvider(
+                UpdateCommand.Default_ToptoutDataUserRepo,
+                UpdateCommand.Default_ToptoutRepoPath);
+
+            Adapters.ITelemetryApi teleApi = new GithubTelemetryAdapter(provider);
 
             IReadOnlyDictionary<string, Toptout> t = null;
             try {

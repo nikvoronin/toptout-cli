@@ -51,7 +51,7 @@ namespace ToptoutCli.Tests
         [Fact]
         public async Task Call_To_SwaggerTelemetryApi()
         {
-            Adapters.ITelemetryApi teleApi = new SwaggerTelemetryApi();
+            Adapters.ITelemetryApi teleApi = new SwaggerTelemetryAdapter();
 
             IReadOnlyDictionary<string, Toptout> t = null;
             try {

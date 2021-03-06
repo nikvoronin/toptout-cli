@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ToptoutCli.Adapters
 {
-    public class SwaggerTelemetryApi : ITelemetryApi
+    public class SwaggerTelemetryAdapter : ITelemetryApi
     {
         public async Task<IReadOnlyDictionary<string, Toptout>> ListTelemetryAsync()
         {
