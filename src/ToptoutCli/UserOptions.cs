@@ -19,12 +19,12 @@ namespace ToptoutCli
             _userOptionsFilename = userOptionsFilename;
         }
 
-        public async void LoadFromFileAsync(string filename = null)
+        public void LoadFromFile(string filename = null)
         {
             using var f = File.OpenRead(filename ?? _userOptionsFilename);
             using var reader = (TextReader)new StreamReader(f);
-            string line = "";
-            while ((line = await reader.ReadLineAsync()) != null) {
+            string line = null;
+            while ((line = reader.ReadLine()) != null) {
                 var result = MatchLine(line);
                 if (result.IsSuccess) {
                     (string appId, string sym) = result.Value;

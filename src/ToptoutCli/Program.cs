@@ -16,15 +16,25 @@ namespace ToptoutCli
 
             var root = new RootCommand( description: "Easily opt-out from telemetry collection." );
 
+            var optionsFileOption = new Option<string> (
+                alias: "--options",
+                description: "Set filename of the user defined options",
+                getDefaultValue: () => Const.Default_UserOptionsFilename
+                );
+            root.AddGlobalOption(optionsFileOption);
+
             root.AddCommand( UpdateCommand.Create() );
-            root.Handler = CommandHandler.Create( new Func<int>(Execute) );
+            root.Handler = CommandHandler.Create( new Func<string, int>(Execute) );
 
             int errlevel = root.Invoke( args );
+
+            Console.WriteLine("Press [Enter] to close...");
+            Console.ReadLine();
 
             return errlevel;
         }
 
-        static int Execute()
+        static int Execute(string options)
         {
             Dictionary<string, Toptout> tm = null;
 

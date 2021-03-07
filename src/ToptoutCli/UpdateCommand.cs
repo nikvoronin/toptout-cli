@@ -17,16 +17,16 @@ namespace ToptoutCli
 
         public enum Provider { Swagger, Github, Local }
 
-        private UpdateCommand() { }
+        private UpdateCommand() {}
 
-        public static Command Create(Action<Provider, string, string> executor = null)
+        public static Command Create(Action<Provider, string, string, string> executor = null)
         {
             var cmd = new Command("update", "Download and update local database.");
             cmd.AddAlias("force");
 
             cmd.Handler = CommandHandler.Create( executor != null 
                 ? executor 
-                : new Action<Provider, string, string>(Execute));
+                : new Action<Provider, string, string, string>(Execute));
 
             var providerOption = new Option<Provider> (
                 alias: "--provider",
@@ -56,9 +56,10 @@ namespace ToptoutCli
             return cmd;
         }
 
-        static void Execute(Provider provider, string repo, string path)
+        static void Execute(Provider provider, string repo, string path, string options)
         {
             ITelemetryApi api;
+
             switch (provider) {
                 case Provider.Swagger:
                     api = new SwaggerTelemetryAdapter();
@@ -76,6 +77,11 @@ namespace ToptoutCli
 
             var apps = api.ListTelemetryAsync().GetAwaiter().GetResult();
             File.WriteAllText(Const.Default_LocalDataFilename, JsonConvert.SerializeObject(apps));
+
+            //var options = new UserOptions(Const.Default_UserOptionsFilename);
+            //if (File.Exists())
+            //    options.LoadFromFile();
+
         }
 
         public static string Validate(IReadOnlyList<Token> tokens)

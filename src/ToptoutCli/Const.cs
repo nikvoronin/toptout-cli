@@ -9,5 +9,6 @@ namespace ToptoutCli
     public static class Const
     {
         public const string Default_LocalDataFilename = "./toptout.json";
+        public const string Default_UserOptionsFilename = "./options.txt";
     }
 }
