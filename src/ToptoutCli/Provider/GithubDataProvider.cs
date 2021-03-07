@@ -1,4 +1,5 @@
 ﻿using Flurl.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,19 +11,24 @@ namespace ToptoutCli.Provider
     {
         static readonly string Default_UserAgent = $"Flurl/{typeof(FlurlHttp).Assembly.GetName().Version}";
 
-        readonly string _userRepoPair;
+        readonly string _repoArg;
         readonly string _path;
+        readonly string _userRepo;
+        readonly string _branch;
 
-        public GithubDataProvider(string userRepoPair, string path)
+        public GithubDataProvider(string repoArg, string path)
         {
-            _userRepoPair = userRepoPair;
+            _repoArg = repoArg;
             _path = path;
+
+            var ps = _repoArg.Split("/");
+            _userRepo = $"{ps[0]}/{ps[1]}";
+            _branch = ps[2];
         }
 
         public async Task<string> GetJsonFileAsString(string appId)
         {
-            string jsonPath = "https://" + $"raw.githubusercontent.com/{_userRepoPair}/master/data/{appId}.json";
-
+            string jsonPath = "https://" + $"raw.githubusercontent.com/{_userRepo}/{_branch}/data/{appId}.json";
             return await jsonPath.GetStringAsync();
         }
 
@@ -49,7 +55,7 @@ namespace ToptoutCli.Provider
                 .Where(s => !string.IsNullOrWhiteSpace(s.Trim()))
                 .ToArray();
 
-            string apiurl = "https://" + $"api.github.com/repos/{_userRepoPair}/git/trees/master";
+            string apiurl = "https://" + $"api.github.com/repos/{_userRepo}/git/trees/{_branch}";
 
             return await FindDataFolderRecursiveAsync(apiurl, subfolders);
         }

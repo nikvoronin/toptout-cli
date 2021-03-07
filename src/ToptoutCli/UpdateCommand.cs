@@ -12,7 +12,7 @@ namespace ToptoutCli
 {
     public class UpdateCommand
     {
-        public const string Default_ToptoutDataUserRepo = "beatcracker/toptout";
+        public const string Default_ToptoutDataUserRepo = "beatcracker/toptout/master";
         public const string Default_ToptoutRepoPath = "/data";
 
         public enum Provider { Swagger, Github, Local }
@@ -35,8 +35,8 @@ namespace ToptoutCli
                 );
 
             var userRepoOption = new Option<string> (
-                alias: "--user-repo",
-                description: "Changes github 'user/repo' pair",
+                aliases: new[]{ "--user-repo-branch", "--repo" },
+                description: "Changes 'user/repo/branch' of the Github repository with a data",
                 getDefaultValue: () => Default_ToptoutDataUserRepo
                 );
 
@@ -45,7 +45,7 @@ namespace ToptoutCli
 
             var pathOption = new Option<string> (
                 alias: "--path",
-                description: "Path to telemetry data inside a github repository",
+                description: "Path to telemetry data inside a Github repository",
                 getDefaultValue: () => Default_ToptoutRepoPath
                 );
 
@@ -56,7 +56,7 @@ namespace ToptoutCli
             return cmd;
         }
 
-        static void Execute(Provider provider, string userRepo, string path)
+        static void Execute(Provider provider, string repo, string path)
         {
             ITelemetryApi api;
             switch (provider) {
@@ -65,7 +65,7 @@ namespace ToptoutCli
                     break;
 
                 case Provider.Github:
-                    api = new GithubTelemetryAdapter(new GithubDataProvider(userRepo, path));
+                    api = new GithubTelemetryAdapter(new GithubDataProvider(repo, path));
                     break;
 
                 default:
@@ -84,13 +84,13 @@ namespace ToptoutCli
                 return null;
 
             if (tokens.Count > 1)
-                return "ERROR: Too much arguments";
+                return "ERROR: Too much arguments.";
 
             if (tokens[0].Type != TokenType.Argument)
-                return "ERROR: Not an argument";
+                return "ERROR: Not an argument.";
 
-            if (tokens[0].Value.Split("/").Length != 2)
-                return "ERROR: Wrong argument format. Expected 'username/repo'";
+            if (tokens[0].Value.Split("/").Length != 3)
+                return "ERROR: Wrong arguments format. Expected 'username/repo/branch'.";
 
             return null;
         }

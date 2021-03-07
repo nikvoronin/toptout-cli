@@ -38,7 +38,8 @@ How to download data
 > toptout-cli update `--provider github` --user-repo 'johnydou/teleoff' --path '/telemetry/data/json'
 
 - `--provider github`
-- `--user-repo` 'johnydou/teleoff'
+- `--user-repo-branch` 'johnydou/teleoff/main'
+  - `--repo` 'johnydou/teleoff/main'
 - `--path` '/telemetry/data/json'
 
 ## ¿ Revert / Undo ?

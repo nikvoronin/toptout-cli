@@ -14,13 +14,13 @@ namespace ToptoutCli.Tests
     public class Update_Cli_Options
     {
         [Theory]
-        [InlineData(true, "user/repo", TokenType.Argument)]
-        [InlineData(true, "uuuu/rrrrreee", TokenType.Argument)]
-        [InlineData(false, "user/repo", TokenType.Operand)]
-        [InlineData(false, "user/repo", TokenType.Command)]
-        [InlineData(false, "uuuu-rrrrreee", TokenType.Argument)]
-        [InlineData(false, "user/re/po", TokenType.Argument)]
-        [InlineData(false, "iamzet", TokenType.Argument)]
+        [InlineData(true, "user/repo/branch", TokenType.Argument)]
+        [InlineData(true, "uuuu/rrrrreee/bbbb", TokenType.Argument)]
+        [InlineData(false, "user/repo/branch", TokenType.Operand)]
+        [InlineData(false, "user/repo/branch", TokenType.Command)]
+        [InlineData(false, "uuuu-rrrrreee-bbbrrrr", TokenType.Argument)]
+        [InlineData(false, "user/re/po/br/a/nch", TokenType.Argument)]
+        [InlineData(false, "iamzetmib", TokenType.Argument)]
         [InlineData(false, "--amend", TokenType.Argument)]
         public void Validate_UpdateCommand_Options(bool valid, string newUserRepo, TokenType ttype)
         {
