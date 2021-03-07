@@ -21,9 +21,6 @@ namespace ToptoutCli
 
             int errlevel = root.Invoke( args );
 
-            Console.WriteLine( "Press [Enter] to close..." );
-            Console.ReadLine();
-
             return errlevel;
         }
 
