@@ -12,7 +12,7 @@ namespace ToptoutCli
     {
         static int Main( string[] args )
         {
-            Console.WriteLine( "Toptout-cli 0.1.306-alpha" );
+            Console.WriteLine( "Toptout-cli 0.1.307-alpha" );
 
             var root = new RootCommand( description: "Easily opt-out from telemetry collection." );
 
@@ -45,7 +45,7 @@ namespace ToptoutCli
                 }
             }
 
-            Console.WriteLine($"Loaded {tm.Count} apps."); // TODO STUB
+            Console.WriteLine($"Loaded {tm?.Count} apps."); // TODO STUB
 
             return 0;
         }
