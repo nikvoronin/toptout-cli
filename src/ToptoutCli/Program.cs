@@ -28,9 +28,10 @@ namespace ToptoutCli
 
             int errlevel = root.Invoke( args );
 
+#if DEBUG   // TODO DEBUG only
             Console.WriteLine("Press [Enter] to close...");
             Console.ReadLine();
-
+#endif
             return errlevel;
         }
 
@@ -51,9 +52,9 @@ namespace ToptoutCli
                     return 2; // TODO define errorlevels
                 }
             }
-
+#if DEBUG
             Console.WriteLine($"Loaded {tm?.Count} apps."); // TODO STUB
-
+#endif
             return 0;
         }
     }

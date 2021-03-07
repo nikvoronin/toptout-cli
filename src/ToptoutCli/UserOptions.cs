@@ -54,13 +54,13 @@ namespace ToptoutCli
         }
 
         public static OptionPair ToOption(string symbol) {
-            var  o = symbol switch {
+            var opt = symbol switch {
                 "+" => Option.TOptOut,
                 "-" => Option.TelemetryOn,
                   _ => Option.Ignore
             };
 
-            return new OptionPair() { Symbol = symbol, Value = o };
+            return new OptionPair() { Symbol = symbol, Value = opt };
         }
 
         public enum Option { TOptOut, TelemetryOn, Ignore }
