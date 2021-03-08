@@ -6,6 +6,7 @@ using System.CommandLine.Invocation;
 using System.CommandLine.Parsing;
 using System.IO;
 using ToptoutCli.Adapters;
+using ToptoutCli.Commands.Options;
 using ToptoutCli.Provider;
 using static ToptoutCli.Commands.Options.ProviderOption;
 
@@ -13,7 +14,6 @@ namespace ToptoutCli.Commands
 {
     public class UpdateCommand
     {
-        public const string Default_ToptoutDataUserRepo = "beatcracker/toptout/master";
         public const string Default_ToptoutRepoPath = "/data";
 
         private UpdateCommand() {}
@@ -27,29 +27,14 @@ namespace ToptoutCli.Commands
                 ? executor 
                 : new Action<DataSource, string, string, string>(Execute));
 
-            var providerOption = new Option<DataSource> (
-                alias: "--provider",
-                description: "Data retrieving method",
-                getDefaultValue: () => DataSource.Swagger
-                );
-
-            var userRepoOption = new Option<string> (
-                aliases: new[]{ "--user-repo-branch", "--repo" },
-                description: "Changes 'user/repo/branch' of the Github repository with a data",
-                getDefaultValue: () => Default_ToptoutDataUserRepo
-                );
-
-            userRepoOption.AllowMultipleArgumentsPerToken = false;
-            userRepoOption.AddValidator(r => ValidateRepoArg(r.Tokens));
-
             var pathOption = new Option<string> (
                 alias: "--path",
                 description: "Path to telemetry data inside a Github repository",
                 getDefaultValue: () => Default_ToptoutRepoPath
                 );
 
-            cmd.AddOption(providerOption);
-            cmd.AddOption(userRepoOption);
+            cmd.AddOption( ProviderOption.Create() );
+            cmd.AddOption( RepoOption.Create() );
             cmd.AddOption(pathOption);
 
             return cmd;
@@ -81,23 +66,6 @@ namespace ToptoutCli.Commands
             //if (File.Exists())
             //    options.LoadFromFile();
 
-        }
-
-        public static string ValidateRepoArg(IReadOnlyList<Token> tokens)
-        {
-            if (tokens.Count == 0)
-                return null;
-
-            if (tokens.Count > 1)
-                return "ERROR: Too much arguments.";
-
-            if (tokens[0].Type != TokenType.Argument)
-                return "ERROR: Not an argument.";
-
-            if (tokens[0].Value.Split("/").Length != 3)
-                return "ERROR: Wrong arguments format. Expected 'username/repo/branch'.";
-
-            return null;
         }
     }
 }

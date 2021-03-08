@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToptoutCli.Commands;
+using ToptoutCli.Commands.Options;
 using ToptoutCli.Provider;
 using Xunit;
 
@@ -17,7 +18,7 @@ namespace ToptoutCli.Tests
         public async Task Find_RepoDataFolderUrl()
         {
             var provider = new GithubDataProvider(
-                UpdateCommand.Default_ToptoutDataUserRepo,
+                RepoOption.Default_ToptoutDataUserRepo,
                 UpdateCommand.Default_ToptoutRepoPath);
 
             string url = await provider.FindDataFolderUrlAsync();
@@ -29,7 +30,7 @@ namespace ToptoutCli.Tests
         public async Task ListJsonFiles()
         {
             var provider = new GithubDataProvider(
-                UpdateCommand.Default_ToptoutDataUserRepo,
+                RepoOption.Default_ToptoutDataUserRepo,
                 UpdateCommand.Default_ToptoutRepoPath);
 
             string url = await provider.FindDataFolderUrlAsync();
@@ -46,7 +47,7 @@ namespace ToptoutCli.Tests
         public async Task LoadJsonFile()
         {
             var provider = new GithubDataProvider(
-                UpdateCommand.Default_ToptoutDataUserRepo,
+                RepoOption.Default_ToptoutDataUserRepo,
                 UpdateCommand.Default_ToptoutRepoPath);
 
             string url = await provider.FindDataFolderUrlAsync();
