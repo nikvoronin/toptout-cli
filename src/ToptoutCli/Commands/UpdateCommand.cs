@@ -50,12 +50,24 @@ namespace ToptoutCli.Commands
             }
 
             var apps = api.ListTelemetryAsync().GetAwaiter().GetResult();
+
+            if (apps == null) {
+                Console.WriteLine("ERROR: Can not update data."); // TODO swagger-api not avilable error message
+                return;
+            }
+
             File.WriteAllText(Const.Default_LocalDataFilename, JsonConvert.SerializeObject(apps));
 
-            //var options = new UserOptions(Const.Default_UserOptionsFilename);
-            //if (File.Exists())
-            //    options.LoadFromFile();
+            var userOpts = new UserOptions(options);
+            if (File.Exists(options))
+                userOpts.LoadFromFile();
 
+            foreach(var appId in apps.Keys) {
+                if (!userOpts.Rules.ContainsKey(appId))
+                    userOpts.AddDefaultRule(appId);
+            }
+
+            userOpts.SaveRules();
         }
     }
 }

@@ -19,6 +19,11 @@ namespace ToptoutCli
             _userOptionsFilename = userOptionsFilename;
         }
 
+        public void AddDefaultRule(string appId)
+        {
+            Rules.Add(appId, ToOption("-"));
+        }
+
         public void LoadFromFile(string filename = null)
         {
             using var f = File.OpenRead(filename ?? _userOptionsFilename);
@@ -55,8 +60,8 @@ namespace ToptoutCli
 
         public static OptionPair ToOption(string symbol) {
             var opt = symbol switch {
-                "+" => Option.TOptOut,
-                "-" => Option.TelemetryOn,
+                "-" => Option.TOptOut,
+                "+" => Option.TelemetryOn,
                   _ => Option.Ignore
             };
 
