@@ -21,7 +21,7 @@ namespace ToptoutCli
 
         public void AddDefaultRule(string appId)
         {
-            Rules.Add(appId, ToOption("-"));
+            Rules.Add(appId, ToOptionPair(Option.TOptOut));
         }
 
         public void LoadFromFile(string filename = null)
@@ -33,7 +33,7 @@ namespace ToptoutCli
                 var result = MatchLine(line);
                 if (result.IsSuccess) {
                     (string appId, string sym) = result.Value;
-                    Rules.Add(appId, ToOption(sym));
+                    Rules.Add(appId, ToOptionPair(sym));
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace ToptoutCli
                 : Result.Fail("No matches");
         }
 
-        public static OptionPair ToOption(string symbol) {
+        public static OptionPair ToOptionPair(string symbol) {
             var opt = symbol switch {
                 "-" => Option.TOptOut,
                 "+" => Option.TelemetryOn,
@@ -66,6 +66,17 @@ namespace ToptoutCli
             };
 
             return new OptionPair() { Symbol = symbol, Value = opt };
+        }
+
+        public static OptionPair ToOptionPair(Option option)
+        {
+            var symbol = option switch {
+                Option.TOptOut => "-",
+                Option.TelemetryOn => "+",
+                _ => "_"
+            };
+
+            return new OptionPair() { Symbol = symbol, Value = option };
         }
 
         public enum Option { TOptOut, TelemetryOn, Ignore }

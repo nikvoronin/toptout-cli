@@ -13,7 +13,7 @@ namespace ToptoutCli
     {
         static int Main( string[] args )
         {
-            Console.WriteLine( "Toptout-cli 0.1.307-alpha" );
+            Console.WriteLine( "Toptout-cli 0.1.308-alpha" );
 
             var root = GlobalCommand.Create();
             root.AddCommand( UpdateCommand.Create() );
