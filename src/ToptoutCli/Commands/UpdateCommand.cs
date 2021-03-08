@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Invocation;
-using System.CommandLine.Parsing;
 using System.IO;
 using ToptoutCli.Adapters;
 using ToptoutCli.Commands.Options;
@@ -14,8 +12,6 @@ namespace ToptoutCli.Commands
 {
     public class UpdateCommand
     {
-        public const string Default_ToptoutRepoPath = "/data";
-
         private UpdateCommand() {}
 
         public static Command Create(Action<DataSource, string, string, string> executor = null)
@@ -27,15 +23,9 @@ namespace ToptoutCli.Commands
                 ? executor 
                 : new Action<DataSource, string, string, string>(Execute));
 
-            var pathOption = new Option<string> (
-                alias: "--path",
-                description: "Path to telemetry data inside a Github repository",
-                getDefaultValue: () => Default_ToptoutRepoPath
-                );
-
             cmd.AddOption( ProviderOption.Create() );
             cmd.AddOption( RepoOption.Create() );
-            cmd.AddOption(pathOption);
+            cmd.AddOption( PathOption.Create() );
 
             return cmd;
         }
