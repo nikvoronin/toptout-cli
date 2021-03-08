@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ToptoutCli.Commands;
 using Xunit;
 
 namespace ToptoutCli.Tests
@@ -26,7 +27,7 @@ namespace ToptoutCli.Tests
         {
             Assert.Equal(
                 valid,
-                UpdateCommand.Validate(new List<Token>() { new Token(newUserRepo, ttype) }) == null);
+                UpdateCommand.ValidateRepoArg(new List<Token>() { new Token(newUserRepo, ttype) }) == null);
         }
 
     }

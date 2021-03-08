@@ -8,7 +8,7 @@ using System.IO;
 using ToptoutCli.Adapters;
 using ToptoutCli.Provider;
 
-namespace ToptoutCli
+namespace ToptoutCli.Commands
 {
     public class UpdateCommand
     {
@@ -41,7 +41,7 @@ namespace ToptoutCli
                 );
 
             userRepoOption.AllowMultipleArgumentsPerToken = false;
-            userRepoOption.AddValidator(r => Validate(r.Tokens));
+            userRepoOption.AddValidator(r => ValidateRepoArg(r.Tokens));
 
             var pathOption = new Option<string> (
                 alias: "--path",
@@ -81,10 +81,9 @@ namespace ToptoutCli
             //var options = new UserOptions(Const.Default_UserOptionsFilename);
             //if (File.Exists())
             //    options.LoadFromFile();
-
         }
 
-        public static string Validate(IReadOnlyList<Token> tokens)
+        public static string ValidateRepoArg(IReadOnlyList<Token> tokens)
         {
             if (tokens.Count == 0)
                 return null;

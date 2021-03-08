@@ -3,6 +3,7 @@ using IO.Swagger.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToptoutCli.Adapters;
+using ToptoutCli.Commands;
 using ToptoutCli.Provider;
 using Xunit;
 
