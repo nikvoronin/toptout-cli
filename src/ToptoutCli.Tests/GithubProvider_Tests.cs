@@ -19,7 +19,7 @@ namespace ToptoutCli.Tests
         {
             var provider = new GithubDataProvider(
                 RepoOption.Default_ToptoutDataUserRepo,
-                UpdateCommand.Default_ToptoutRepoPath);
+                PathOption.Default_ToptoutRepoPath);
 
             string url = await provider.FindDataFolderUrlAsync();
 
@@ -31,7 +31,7 @@ namespace ToptoutCli.Tests
         {
             var provider = new GithubDataProvider(
                 RepoOption.Default_ToptoutDataUserRepo,
-                UpdateCommand.Default_ToptoutRepoPath);
+                PathOption.Default_ToptoutRepoPath);
 
             string url = await provider.FindDataFolderUrlAsync();
 
@@ -48,7 +48,7 @@ namespace ToptoutCli.Tests
         {
             var provider = new GithubDataProvider(
                 RepoOption.Default_ToptoutDataUserRepo,
-                UpdateCommand.Default_ToptoutRepoPath);
+                PathOption.Default_ToptoutRepoPath);
 
             string url = await provider.FindDataFolderUrlAsync();
 

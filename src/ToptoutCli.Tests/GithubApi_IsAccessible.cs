@@ -17,7 +17,7 @@ namespace ToptoutCli.Tests
         {
             var provider = new GithubDataProvider(
                 RepoOption.Default_ToptoutDataUserRepo,
-                UpdateCommand.Default_ToptoutRepoPath);
+                PathOption.Default_ToptoutRepoPath);
 
             Adapters.ITelemetryApi teleApi = new GithubTelemetryAdapter(provider);
 
