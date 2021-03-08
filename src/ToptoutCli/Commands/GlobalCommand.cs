@@ -24,7 +24,7 @@ namespace ToptoutCli.Commands
         public static RootCommand Create(Action<string> executor = null)
         {
             var cmd = new RootCommand( description: "Easily opt-out from telemetry collection." );
-            cmd.AddGlobalOption( UserOptionsFilenameOption.Create() );
+            cmd.AddGlobalOption( UserOptionsOption.Create() );
 
             cmd.Handler = CommandHandler.Create( executor != null 
                 ? executor 

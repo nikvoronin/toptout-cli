@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ToptoutCli.Commands.Options
 {
-    public class UserOptionsFilenameOption
+    public class UserOptionsOption
     {
         public static Option<string> Create()
         {
