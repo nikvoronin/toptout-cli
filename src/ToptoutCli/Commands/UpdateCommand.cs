@@ -7,6 +7,7 @@ using System.CommandLine.Parsing;
 using System.IO;
 using ToptoutCli.Adapters;
 using ToptoutCli.Provider;
+using static ToptoutCli.Commands.Options.ProviderOption;
 
 namespace ToptoutCli.Commands
 {
@@ -15,23 +16,21 @@ namespace ToptoutCli.Commands
         public const string Default_ToptoutDataUserRepo = "beatcracker/toptout/master";
         public const string Default_ToptoutRepoPath = "/data";
 
-        public enum Provider { Swagger, Github, Local }
-
         private UpdateCommand() {}
 
-        public static Command Create(Action<Provider, string, string, string> executor = null)
+        public static Command Create(Action<DataSource, string, string, string> executor = null)
         {
             var cmd = new Command("update", "Download and update local database.");
             cmd.AddAlias("force");
 
             cmd.Handler = CommandHandler.Create( executor != null 
                 ? executor 
-                : new Action<Provider, string, string, string>(Execute));
+                : new Action<DataSource, string, string, string>(Execute));
 
-            var providerOption = new Option<Provider> (
+            var providerOption = new Option<DataSource> (
                 alias: "--provider",
                 description: "Data retrieving method",
-                getDefaultValue: () => Provider.Swagger
+                getDefaultValue: () => DataSource.Swagger
                 );
 
             var userRepoOption = new Option<string> (
@@ -56,21 +55,21 @@ namespace ToptoutCli.Commands
             return cmd;
         }
 
-        static void Execute(Provider provider, string repo, string path, string options)
+        static void Execute(DataSource provider, string repo, string path, string options)
         {
             ITelemetryApi api;
 
             switch (provider) {
-                case Provider.Swagger:
+                case DataSource.Swagger:
                     api = new SwaggerTelemetryAdapter();
                     break;
 
-                case Provider.Github:
+                case DataSource.Github:
                     api = new GithubTelemetryAdapter(new GithubDataProvider(repo, path));
                     break;
 
                 default:
-                case Provider.Local:
+                case DataSource.Local:
                     api = new LocalTelemetryAdapter(new LocalDataProvider(Const.Default_LocalDataFilename));
                     break;
             }
@@ -81,6 +80,7 @@ namespace ToptoutCli.Commands
             //var options = new UserOptions(Const.Default_UserOptionsFilename);
             //if (File.Exists())
             //    options.LoadFromFile();
+
         }
 
         public static string ValidateRepoArg(IReadOnlyList<Token> tokens)
