@@ -37,11 +37,17 @@ How to download data
 
 ### Github Native Api Provider
 
-> toptout-cli update `--provider github` --user-repo 'johnydou/teleoff' --path '/telemetry/data/json'
+```text
+https://github.com/johnydou/teleoff/tree/master/telemetry/data/json
+                   ^^^^^^^^/^^^^^^^      ^^^^^^ ^^^^^^^^^/^^^^/^^^^
+                   user..../repo...      branch path...../..../....
+```
+
+> toptout-cli update `--provider github` --repo 'johnydou/teleoff/master' --path '/telemetry/data/json'
 
 - `--provider github`
-- `--user-repo-branch` 'johnydou/teleoff/main'
-  - `--repo` 'johnydou/teleoff/main'
+- `--repo` 'username/repository/branch'
+  - `--user-repo-branch` 'johnydou/teleoff/main'
 - `--path` '/telemetry/data/json'
 
 ## ¿ Revert / Undo ?
