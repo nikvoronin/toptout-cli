@@ -53,6 +53,21 @@ namespace ToptoutCli.Commands
 #if DEBUG
             Console.WriteLine($"Loaded {tm?.Count} apps."); // TODO STUB
 #endif
+
+            Dictionary<string, UserOptions.OptionPair> rules;
+
+            if (File.Exists(options)) {
+                var uo = new UserOptions(options);
+                uo.LoadFromFile();
+                rules = uo.Rules;
+                ProcessApp(appId, UserOptions.Option.TOptOut);
+            }
+            else {
+                rules = new();
+                foreach(var appId in tm.Keys)
+                    ProcessApp(appId, UserOptions.Option.TOptOut);
+            }
+
             return 0;
         }
     }
