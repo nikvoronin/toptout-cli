@@ -17,10 +17,8 @@ namespace ToptoutCli.Adapters
 
             try {
                 List<Toptout> ts = await teleApi.GetTelemetryAsync();
-                telemetry = new Dictionary<string, Toptout>();
-
-                foreach (var t in ts)
-                    telemetry.Add(t.Id, t);
+                telemetry = new Dictionary<string, Toptout>(
+                    ts.Select(t => new KeyValuePair<string, Toptout>(t.Id, t)));
             }
             catch {
                 return null;
