@@ -3,6 +3,7 @@ using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
+using System.Linq;
 using ToptoutCli.Adapters;
 using ToptoutCli.Commands.Options;
 using ToptoutCli.Provider;
@@ -14,14 +15,12 @@ namespace ToptoutCli.Commands
     {
         private UpdateCommand() {}
 
-        public static Command Create(Action<DataSource, string, string, string> executor = null)
+        public static Command Create(Delegate executor = null)
         {
             var cmd = new Command("update", "Download and update local database.");
             cmd.AddAlias("force");
 
-            cmd.Handler = CommandHandler.Create( executor != null 
-                ? executor 
-                : new Action<DataSource, string, string, string>(Execute));
+            cmd.Handler = CommandHandler.Create( executor ?? new Action<DataSource, string, string, string>(Execute));
 
             cmd.AddOption( ProviderOption.Create() );
             cmd.AddOption( RepoOption.Create() );
@@ -40,12 +39,12 @@ namespace ToptoutCli.Commands
                     break;
 
                 case DataSource.Github:
-                    api = new GithubTelemetryAdapter(new GithubDataProvider(repo, path));
+                    api = new GithubTelemetryAdapter( new GithubDataProvider(repo, path));
                     break;
 
                 default:
                 case DataSource.Local:
-                    api = new LocalTelemetryAdapter(new LocalDataProvider(Const.Default_LocalDataFilename));
+                    api = new LocalTelemetryAdapter( new LocalDataProvider( Const.Default_LocalDataFilename));
                     break;
             }
 
