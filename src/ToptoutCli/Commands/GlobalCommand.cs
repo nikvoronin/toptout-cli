@@ -21,14 +21,12 @@ namespace ToptoutCli.Commands
 
         private GlobalCommand() {}
 
-        public static RootCommand Create(Action<string> executor = null)
+        public static RootCommand Create(Delegate executor = null)
         {
             var cmd = new RootCommand( description: "Easily opt-out from telemetry collection." );
             cmd.AddGlobalOption( UserOptionsOption.Create() );
 
-            cmd.Handler = CommandHandler.Create( executor != null 
-                ? executor 
-                : new Func<string, int>(Execute));
+            cmd.Handler = CommandHandler.Create( executor ?? new Func<string, int>(Execute));
 
             return cmd;
         }
@@ -41,15 +39,16 @@ namespace ToptoutCli.Commands
                 Console.WriteLine("[!] Warning. Can not find local database. Use the `force`, Luke.");
                 return 1; // TODO define errorlevels
             }
-            else {
-                try {
-                    tm = new LocalDataProvider(Const.Default_LocalDataFilename).LoadLocalData();
-                }
-                catch {
-                    Console.WriteLine("[!] Error. Can not load local database. Should try to `update`.");
-                    return 2; // TODO define errorlevels
-                }
+
+            try {
+                tm = new LocalDataProvider(Const.Default_LocalDataFilename)
+                    .LoadLocalData();
             }
+            catch {
+                Console.WriteLine("[!] Error. Can not load local database. Should try to `update`.");
+                return 2; // TODO define errorlevels
+            }
+
 #if DEBUG
             Console.WriteLine($"Loaded {tm?.Count} apps."); // TODO STUB
 #endif
