@@ -59,12 +59,12 @@ namespace ToptoutCli.Commands
                 var uo = new UserOptions(options);
                 uo.LoadFromFile();
                 rules = uo.Rules;
-                ProcessApp(appId, UserOptions.Option.TOptOut);
+                // ProcessApp(appId, UserOptions.Option.TOptOut);
             }
             else {
-                rules = new();
-                foreach(var appId in tm.Keys)
-                    ProcessApp(appId, UserOptions.Option.TOptOut);
+                rules = new ();
+                //foreach(var appId in tm.Keys)
+                //    ProcessApp(appId, UserOptions.Option.TOptOut);
             }
 
             return 0;

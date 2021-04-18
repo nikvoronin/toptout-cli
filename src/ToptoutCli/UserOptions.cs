@@ -41,9 +41,9 @@ namespace ToptoutCli
         public void SaveRules(string filename = null)
         {
             using var f = File.OpenWrite(filename ?? _userOptionsFilename);
-            using var writer = (TextWriter)new StreamWriter(f);
+            using var writer = (TextWriter) new StreamWriter(f);
             foreach(var appId in Rules.Keys)
-                writer.WriteLine(FormatRule(appId, Rules[appId]) );
+                writer.WriteLine( FormatRule(appId, Rules[appId]) );
         }
 
         public static string FormatRule(string appId, OptionPair option) => $"[{option.Symbol}] {appId}";

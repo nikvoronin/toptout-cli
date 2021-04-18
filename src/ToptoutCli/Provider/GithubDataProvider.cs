@@ -66,7 +66,8 @@ namespace ToptoutCli.Provider
 
             string name = path[0];
             string folderUrl = ti.tree
-                .FirstOrDefault(child => child.path == name)?.url;
+                .FirstOrDefault(child => child.path == name)
+                ?.url;
 
             return path.Length < 2
                 ? folderUrl
