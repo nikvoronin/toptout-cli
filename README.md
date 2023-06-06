@@ -1,6 +1,6 @@
 # [Toptout](https://github.com/beatcracker/toptout) interactive --command-line
 
-> In a draft state!
+>⚠ This project is discontinued because [the main one](https://github.com/beatcracker/toptout) has already implemented multiplatform scripting gears.
 
 ## Requirements
 
